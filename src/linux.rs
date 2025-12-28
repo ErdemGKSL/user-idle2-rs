@@ -1,10 +1,8 @@
-mod linux_dbus_impl;
-mod linux_x11_impl;
+mod linux_dbus;
+mod linux_x11;
 
-use linux_dbus_impl::{
-    get_idle_time_from_mutter, get_idle_time_from_screensaver,
-};
-use linux_x11_impl::get_idle_time as get_idle_time_from_x11;
+use linux_dbus::{get_idle_time_from_mutter, get_idle_time_from_screensaver};
+use linux_x11::get_idle_time as get_idle_time_from_x11;
 
 use crate::Error;
 use std::time::Duration;

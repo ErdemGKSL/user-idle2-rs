@@ -21,15 +21,15 @@ use std::time::Duration;
 pub use error::Error;
 
 #[cfg(all(target_os = "linux"))]
-#[path = "linux_impl.rs"]
+#[path = "linux.rs"]
 mod idle;
 
 #[cfg(target_os = "windows")]
-#[path = "windows_impl.rs"]
+#[path = "windows.rs"]
 mod idle;
 
 #[cfg(target_os = "macos")]
-#[path = "macos_impl.rs"]
+#[path = "macos.rs"]
 mod idle;
 
 pub struct UserIdle {
