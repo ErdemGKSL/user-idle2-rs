@@ -14,6 +14,8 @@ all-features = false
 [target.'cfg(target_os = "linux")'.dependencies]
 x11 = { version = "2.21", features = ["xlib", "xss"] }
 dbus = { version = "0.9" }
+wayland-client = "^0.31.11"
+wayland-protocols = { version = "^0.32.9", features = ["client"] }
 
 [target.'cfg(target_os = "windows")'.dependencies]
 windows-sys = { version = "0.48.0", features = [
@@ -27,3 +29,7 @@ IOKit-sys = "0.1.5"
 mach = "0.3.2"
 CoreFoundation-sys = "0.1.4"
 cstr = "0.2.11"
+
+[dependencies]
+chrono = "0.4.42"
+wayland-protocols = { version = "^0.32.9", features = ["client", "staging"] }
