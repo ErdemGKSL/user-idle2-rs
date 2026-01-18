@@ -11,9 +11,14 @@ keywords = ["idle", "gui", "ui", "user", "afk"]
 [package.metadata.docs.rs]
 all-features = false
 
+[features]
+default = []
+rdev = ["dep:rdev"]
+
 [target.'cfg(target_os = "linux")'.dependencies]
 x11 = { version = "2.21", features = ["xlib", "xss"] }
 dbus = { version = "0.9" }
+rdev = { version = "0.5", optional = true }
 
 [target.'cfg(target_os = "windows")'.dependencies]
 windows-sys = { version = "0.48.0", features = [
