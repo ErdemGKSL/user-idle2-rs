@@ -11,8 +11,17 @@ use crate::error::Error;
 
 pub fn get_idle_time() -> Result<Duration, Error> {
     unsafe {
-        let info = XScreenSaverAllocInfo();
         let display = XOpenDisplay(null::<c_char>());
+        if display.is_null() {
+            return Err(Error::new("Failed to open X11 display (no X11 server available)"));
+        }
+
+        let info = XScreenSaverAllocInfo();
+        if info.is_null() {
+            XCloseDisplay(display);
+            return Err(Error::new("Failed to allocate XScreenSaverInfo"));
+        }
+
         let screen = XDefaultScreen(display);
         let root_window = XRootWindow(display, screen);
         let status = XScreenSaverQueryInfo(display, root_window, info);
